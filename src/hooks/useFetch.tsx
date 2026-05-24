@@ -18,15 +18,35 @@ export function useFetch() {
   const [loading, setLoading] = useState(false)
   const countryName = "United States";
   const sesssionName = "Race";
-  let sessionKey = String | undefined
+  let sessionKey = Number | undefined
   const delay = () => new Promise((resolve) => setTimeout(resolve, 500));
 
   useEffect(() => {
     async function fetchdata() {
       setLoading(true)
+     
       const dataCircuit = await getCircuits();
       setCircuits(circ);
       
+      const dataSession = await getSesion(countryName, sesssionName)
+      setSession(dataSession)
+      sessionKey = dataSession[0].session_key 
+      
+      await delay()
+      
+      const data_cha_drv = await getChampionshipDrivers(sessionKey)
+      setDriversChamp(data_cha_drv)
+      
+      const data_cha_teams = await getChampionshipTeams(sessionKey)
+      setTeamChamp(data_cha_teams)
+      
+      await delay()
+      
+      const dataResults = await getResults(sessionKey)
+      setResult(dataResults)
+      
+      const dataDrivers = await getDrivers(sessionKey)
+      setDrivers(dataDrivers)
       
       setLoading(false)
     }
