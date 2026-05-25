@@ -61,5 +61,8 @@ export function useFetch() {
     drivers,
     teamChamp,
     driversChamp,
+    countryName, 
+    sesssionName, 
+    loading
   };
 }
