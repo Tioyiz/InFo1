@@ -33,3 +33,15 @@ export async function getResults(sesionKey: Number) {
   );
   return data;
 }
+
+export function getAllSessions(countryName:String){
+  const dataSessions = await getData(
+        `${BASE_URL}/sessions?country_name=${countryName}&year=2026`
+       )
+  return dataSessions
+}
+
+export function getGrid(sesionKey:Number) {
+  const dataGrid = await getData(`https://api.openf1.org/v1/starting_grid?session_key=${sesionKey}&position%3C=23`) 
+  return dataGrid
+}

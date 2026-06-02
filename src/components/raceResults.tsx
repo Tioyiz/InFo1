@@ -7,15 +7,11 @@ export function Results({ results, countryName, pilotos,
   
   const winner = pilotos.find(d => d.driver_number === results[0].driver_number)
   
-  const driversName = results.map(res => pilotos.find(pil => pil.driver_number === res.driver_number)).slice(1)
-  
-  const format = (n) => String(n).padStart(2, '0')
+  const driversName = getDriverData(results, pilotos).slice(1)
   
   const totalSegundos = results[0].duration
-  const horas = Math.floor(totalSegundos / 3600)
-  const minutos = Math.floor((totalSegundos % 3600) / 60)
-  const segundos = (totalSegundos % 60).toFixed(3)
-  const tiempo = `${format(horas)}:${format(minutos)}:${format(Math.floor(segundos))}`
+  
+  const tiempo = getTime(totalSegundos)
   
   return (
     <section className='race-results'

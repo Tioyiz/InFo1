@@ -1,16 +1,3 @@
-const teamLogos = {
-  Alpine: '/Img/teams/alpine.jpeg',
-  'Red Bull Racing': '/Img/teams/redbull.jpg',
-  McLaren: '/Img/teams/mclaren.jpg',
-  Mercedes: '/Img/teams/mercedes.jpeg',
-  Ferrari: '/Img/teams/ferrari.png',
-  'Aston Martin': '/Img/teams/aston.jpeg',
-  Cadillac: '/Img/teams/cadillac.jpeg',
-  'Haas F1 Team': '/Img/teams/hass.png',
-  'Racing Bulls': '/Img/teams/rb.png',
-  Audi: '/Img/teams/audi.png',
-  Williams: '/Img/teams/willians.png'
-} 
 
 
 export function Teams({ equipos, pilotos }) {

@@ -6,6 +6,8 @@ import {
   getSesion,
   getResults,
   getDrivers,
+  getAllSessions, 
+  getGrid
 } from "../api/services/fetchdata";
 
 export function useFetch() {
@@ -15,15 +17,21 @@ export function useFetch() {
   const [drivers, setDrivers] = useState();
   const [teamChamp, setTeamChamp] = useState();
   const [driversChamp, setDriversChamp] = useState();
+  const [allSessions, setAllSessions] = useState()
+  const [grid, setGrid] = useState()
   const [loading, setLoading] = useState(false)
+
   const countryName = "United States";
   const sesssionName = "Race";
-  let sessionKey = Number | undefined
+  
+  let sessionKey:Number|undefined = ''
+  
   const delay = () => new Promise((resolve) => setTimeout(resolve, 500));
 
   useEffect(() => {
     async function fetchdata() {
-      setLoading(true)
+     try {
+        setLoading(true)
      
       const dataCircuit = await getCircuits();
       setCircuits(circ);
@@ -48,7 +56,20 @@ export function useFetch() {
       const dataDrivers = await getDrivers(sessionKey)
       setDrivers(dataDrivers)
       
-      setLoading(false)
+      await delay()
+      
+      const dataAllSessions = await getAllSessions(countryName)
+      setAllSessions(dataAllSessions)
+      
+      const dataGrid = await getGrid(sessionKey)
+      setGrid(dataGrid)
+     } catch (e) {
+       console.log(e)
+     }finally{
+       setLoading(false)
+     }
+      
+      
     }
 
     fetchdata();
@@ -61,6 +82,8 @@ export function useFetch() {
     drivers,
     teamChamp,
     driversChamp,
+    allSessions, 
+    grid, 
     countryName, 
     sesssionName, 
     loading
