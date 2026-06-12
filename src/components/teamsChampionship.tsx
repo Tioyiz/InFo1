@@ -15,7 +15,12 @@ export function Teams({ equipos, pilotos }) {
       <h1> Campeonato de Equipos </h1>
        {
         newData.map((equipo, idx) => 
-         <div key={idx} >
+         <div key={idx}
+          className='positions'
+          style={{
+           background :  `linear-gradient(150deg, #${equipo.team_colour}dd, #1f1f1f, #1f1f1f, #1f1f1f )`
+         }}
+         >
          <div>
           <h3>{ equipo.position_current }</h3>
           <img src={equipo.logo}/>

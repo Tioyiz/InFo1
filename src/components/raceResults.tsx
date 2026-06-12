@@ -40,14 +40,14 @@ export function Results({ results, countryName, pilotos,
           {
            results.slice(1).map((res,idx)=>
             <tr key={idx}>
-             <td> {res.position}.-</td>
+             <td>{res.position == 'null' ? 'dnf' : res.position} </td>
              <td> 
               <img src={driversName[idx] .headshot_url}/>
              </td>
              <td> 
               {driversName[idx].broadcast_name}
              </td>
-             <td> {res.gap_to_leader} </td>
+             <td> +{res.gap_to_leader === null ? '-' : res.gap_to_leader}  </td>
              <td> {res.points} pts</td>
            </tr>) 
           } 

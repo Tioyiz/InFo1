@@ -4,14 +4,19 @@ export function DriversChampionship({ campeonato, pilotos }) {
     const info = pilotos.find(obj => obj.driver_number === piloto.driver_number)
     return Object.assign(piloto, info)
     
-  })
+  })  
   
   return (
     <section className='drivers' >
       <h1> Campeonato de Pilotos </h1>
       {
         newData.map((piloto, idx) => 
-         <div key={idx} >
+         <div key={idx}
+         className='positions'
+         style={{
+           background :  `linear-gradient(150deg, #${piloto.team_colour}dd, #1f1f1f, #1f1f1f, #1f1f1f )`
+         }}
+         >
          <div>
           <h3>{ piloto.position_current }</h3 >
          

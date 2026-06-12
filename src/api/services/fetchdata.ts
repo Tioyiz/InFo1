@@ -29,19 +29,24 @@ export async function getSesion(countryName: String, sessionName: String) {
 
 export async function getResults(sesionKey: Number) {
   const data = await getData(
-    `session_result?sesion_key=${sesionKey}&position%3c=22`
+    `session_result?sesion_key=${sesionKey}`
   );
   return data;
 }
 
 export function getAllSessions(countryName:String){
   const dataSessions = await getData(
-        `${BASE_URL}/sessions?country_name=${countryName}&year=2026`
+        `${BASE_URL}/sessions?location=${countryName}&year=2026`
        )
   return dataSessions
 }
 
-export function getGrid(sesionKey:Number) {
-  const dataGrid = await getData(`https://api.openf1.org/v1/starting_grid?session_key=${sesionKey}&position%3C=23`) 
+export function getGridKey( countryName:String, gridS:String ){
+  const gridKey = await getData(`${BASE_URL}/sessions?country_name=${countryName}&session_name=${gridS}&year=2026`) 
+  return gridKey
+}
+
+export function getGrid(gridKey:Number) {
+  const dataGrid = await getData(`https://api.openf1.org/v1/starting_grid?session_key=${gridKey}`) 
   return dataGrid
 }

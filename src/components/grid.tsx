@@ -2,34 +2,54 @@ function Grid({ grid, pilotos }) {
   if (pilotos.length == 0 ) {
     return null
   }
+ 
  const driversName = getDriverData(grid, pilotos)
-  
-  
   
   return(
     <section className='grid'>
+      <h1>Parrilla de Salida</h1>
+      <div className='div'>
       {
         grid.map((g, i) =>
-         <div key={i}> 
-           <span> { g.position } </span>
-           <div className='d-img'>
+         <div key={i} className='grid-card'
+           style={
+              {
+                borderRight: `5px solid #${driversName[i].team_colour}`  
+              }
+            }
+         > 
+           <h2> { g.position } </h2>
+           <div className='grid-img'
+            style={
+              {
+                background:`radial-gradient(circle,#${driversName[i].team_colour}80 0%, #${driversName[i].team_colour}20 10%, transparent 100%)`, 
+                
+              }
+            }
+           >
             <img src={ driversName[i].headshot_url }/>
            </div>
-           <div>
-             <span>
+           <div className='grid-info'
+             style={
+              {
+                background:`radial-gradient(circle,#${driversName[i].team_colour}80 0%, #${driversName[i].team_colour}40 10%, transparent 100%)`
+              }
+            } 
+           >
+             <h4>
                { driversName[i].first_name }
-             </span>
-             <span>
+             </h4>
+             <h3>
                { driversName[i].last_name }
-             </span>
-             <span>
+             </h3>
+             <h4>
                { getTime(g.lap_duration) }
-             </span>
+             </h4>
            </div>
          </div>
         )
       }
-      
+      </div>
     </section> 
   ) 
 }

@@ -1,10 +1,11 @@
 import {getDate} from '../utils'
 
-function SessionsDate({ countryName}) {
+function SessionsDate({ nextRace,sessions }) {
   if (!sessions) return <h3>No hay datos de sesión</h3>;
   
   return (
     <section className='sessions-date'>
+       <h2>GP {nextRace} | Sessions</h2>
      {
        sessions.map((ses, i) =>
          <div key={i}>
