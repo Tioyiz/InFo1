@@ -1,10 +1,23 @@
 import {useState, useEffect } from 'react'
+import { useLocation } from "react-router"
 import { useFetch } from "../../hooks/useFetch";
 
 export function PageSchedule(){
   const { circuits } = useFetch()
   const [data, setData] = useState([])
   const [loading, setLoading ] = useState(false)
+  
+  const location = useLocation()
+  const { circuit } = location.state
+  
+  useEffect(() =>{
+    const $el = document.getElementById(circuit)
+    if(!$el) return null 
+    $el.scrollIntoView({
+      behavior : 'smooth', 
+      block : 'start'
+    }) 
+  }, [circuit])  
   
 useEffect(() => {
   const getDatos = async () => {

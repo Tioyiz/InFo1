@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import {getDate} from '../utils'
 
 function Schedule({ circuitos }) {
@@ -6,7 +7,8 @@ function Schedule({ circuitos }) {
     <section className='schedule'>
       {
         circuitos.map((circ, i) =>
-         <div key={i} className='circuit-card'>
+        <Link to='/schedule' state={{ circuit: circ.location}}>
+         <div key={i} id={circ.location} className='circuit-card'>
           <div>
             <img src={ circ.country_flag }/>
             <span>
@@ -22,6 +24,7 @@ function Schedule({ circuitos }) {
             </span>
           </div>
          </div>
+        </Link>
         )
       }
     </section>
