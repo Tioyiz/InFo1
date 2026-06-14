@@ -42,6 +42,19 @@ section{
   border-bottom: 1px solid #555;
   background: rgba(255, 255, 255, 0.03) ;
   
+    & .cancelled{
+    padding: 18px 24px;
+    position: absolute ;
+    top: 230px;
+    left: 200px;
+    border: 10px solid #e10600;
+    color: #e10600;
+    transform: rotate(-20deg);
+    font-size: 100px;
+    font-weight: bold ;
+    z-index: 100;
+  }
+  
   & .img{
     width: 50%;
     height: 100%;
@@ -51,7 +64,7 @@ section{
     align-items: center ;
     
     & span{
-      font-size: 25px;
+      font-size: 30px;
       color: #ddd;
     }
     
