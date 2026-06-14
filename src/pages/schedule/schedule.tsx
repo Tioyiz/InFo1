@@ -50,6 +50,7 @@ useEffect(() => {
          <section
           key={i}
           className='schedule-info'
+          id={circ.location}
          >
           {
             circ.is_cancelled && 
