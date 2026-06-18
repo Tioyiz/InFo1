@@ -1,7 +1,8 @@
 import { Link } from 'react-router'
-import {getDate} from '../utils'
+import { getDate } from '../utils/functions'
 
-function Schedule({ circuitos }) {
+
+export function Schedule({ circuitos }) {
   
   return (
     <section className='schedule'>

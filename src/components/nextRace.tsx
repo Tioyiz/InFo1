@@ -1,6 +1,8 @@
-import {useCounter} from '../../hooks/useCounterToNextRace.tsx'
+import { useCounter } from "../hooks/useCounterToNextRace"
+import { getDate } from "../utils/functions"
 
-function NextRace({circuitos, nextRace}) {
+
+export function NextRace({circuitos, nextRace}) {
   
   if (circuitos.length === 0) return null
   

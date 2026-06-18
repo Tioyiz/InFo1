@@ -10,6 +10,7 @@ import {
   getGridKey, 
   getGrid
 } from "../api/services/fetchdata";
+import { delay } from "../utils/functions";
 
 export function useFetch() {
   const [circuits, setCircuits] = useState();
@@ -30,17 +31,17 @@ export function useFetch() {
   //results
   const countryName = "United States";
   const sessionName = "Race";
-  let sessionKey:Number|undefined = ''
+  let sessionKey:Number = 
  
   //grid
-  const gridS = 'Qualifying'
+  const gridS = "Qualifying"
   let gridkey
   
   //next race
   const nextRace = 'Barcelona'
   
   
-  const delay = () => new Promise((resolve) => setTimeout(resolve, 500));
+  
   
   useEffect(() =>{
     localStorage.setItem('allResults', JSON.stringify(allResults))
@@ -52,7 +53,7 @@ export function useFetch() {
         setLoading(true)
      
       const dataCircuit = await getCircuits();
-      setCircuits(circ);
+      setCircuits(dataCircuit);
       
       const dataSession = await getSesion(countryName, sessionName)
       setSession(dataSession)
@@ -116,6 +117,7 @@ export function useFetch() {
     countryName, 
     sessionName, 
     allSessions, 
+    allResults,
     nextRace, 
     loading
   };

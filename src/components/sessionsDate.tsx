@@ -1,6 +1,6 @@
-import {getDate} from '../utils'
+import {getDate} from '../utils/functions'
 
-function SessionsDate({ nextRace,sessions }) {
+export function SessionsDate({ nextRace,sessions }) {
   if (!sessions) return <h3>No hay datos de sesión</h3>;
   
   return (

@@ -1,5 +1,6 @@
+import { Header } from "./components/header";
 import { AppRouter } from "./routes/appRouter";
-import { Header } from "../../components/header"
+
 
 
 export default function App() {

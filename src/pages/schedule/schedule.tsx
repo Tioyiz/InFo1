@@ -1,6 +1,9 @@
 import {useState, useEffect } from 'react'
 import { useLocation } from "react-router"
 import { useFetch } from "../../hooks/useFetch";
+import { getData } from '../../api/endpoint';
+import { delay } from '../../utils/functions';
+const BASE_URL = "https://api.openf1.org/v1";
 
 export function PageSchedule(){
   const { circuits } = useFetch()
@@ -24,7 +27,7 @@ useEffect(() => {
     setLoading(true)
     const results = []
 
-    for (const circuito of circuitos) {
+    for (const circuito of circuits) {
       
       const res = await getData(
         `${BASE_URL}/sessions?location=${circuito.location}&year=2026`) 

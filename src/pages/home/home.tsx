@@ -1,9 +1,13 @@
-import { Link } from "react-router";
-import { getCircuits, getSesion } from "../../api/services/fetchdata";
+
 import { useFetch } from "../../hooks/useFetch";
-import {Loader}  from "../../components/loader.tsx"
-import { useState } from "react";
-import "../home.css"
+import { DriversChampionship } from "../../components/driversChampionship";
+import { NextRace } from "../../components/nextRace";
+import { SessionsDate } from "../../components/sessionsDate";
+import { Schedule } from "../../components/schedule";
+import { Results } from "../../components/raceResults";
+import { Teams } from "../../components/teamsChampionship";
+import { Loader } from "../../components/loader";
+
 
 export function Home() {
  const {
