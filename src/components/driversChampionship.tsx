@@ -1,4 +1,11 @@
-export function DriversChampionship({ campeonato, pilotos }) {
+import { Drivers, DriversChampionship } from "../types/types"
+
+type Props = {
+  campeonato : DriversChampionship[], 
+  pilotos : Drivers[]
+}
+
+export function DriversChampionship({ campeonato, pilotos }:Props) {
   
   const newData = campeonato.map(piloto => {
     const info = pilotos.find(obj => obj.driver_number === piloto.driver_number)

@@ -1,11 +1,11 @@
 import {useState, useEffect, useMemo }  from 'react'
 
-export function useCounter({date}){
+export function useCounter({date}:{date:Number}){
   
-  const [second, setSeconds] = useState()
-  const [minute, setMinutes] = useState()
-  const [hour, setHours] = useState()
-  const [day, setDay] = useState()
+  const [second, setSeconds] = useState<String>("")
+  const [minute, setMinutes] = useState<String>("")
+  const [hour, setHours] = useState<String>("")
+  const [day, setDay] = useState<String>("")
   
   const seconds = 1000
   const minutes = seconds * 60
@@ -14,7 +14,7 @@ export function useCounter({date}){
   
   function updateTime(){
     const now = Date.now()
-    const diff = date - now
+    const diff = Number(date) - now
     
     setSeconds(Math.floor((diff % minutes) / seconds).toString().padStart(2,'0'))
     
@@ -35,5 +35,5 @@ export function useCounter({date}){
     return  () => clearInterval(interval)
   }, [])
   
-  return counter
+  return {counter}
 }

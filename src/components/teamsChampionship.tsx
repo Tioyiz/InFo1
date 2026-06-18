@@ -1,11 +1,22 @@
+import { Drivers, TeamsChampionship } from "../types/types"
+import { teamLogos } from "../utils/functions"
 
 
-export function Teams({ equipos, pilotos }) {
+type Props = {
+  equipos : TeamsChampionship[], 
+  pilotos : Drivers[]
+}
+
+export function Teams({ equipos, pilotos }:Props) {
   
   const newData = equipos.map(equipo => {
     const info = pilotos.find(obj => obj.team_name === equipo.team_name)
-    info['logo'] = teamLogos[equipo.team_name]
-    return Object.assign(equipo, info)
+    
+    return {
+     ...equipo,
+     ...info,
+     logo : teamLogos[equipo.team_name as string]
+    }
     
   })
   

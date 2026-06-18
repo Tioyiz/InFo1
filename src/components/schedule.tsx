@@ -1,8 +1,12 @@
 import { Link } from 'react-router'
 import { getDate } from '../utils/functions'
+import { Circuits } from '../types/types'
 
+type Props = {
+  circuitos : Circuits[]
+}
 
-export function Schedule({ circuitos }) {
+export function Schedule({ circuitos }:Props) {
   
   return (
     <section className='schedule'>

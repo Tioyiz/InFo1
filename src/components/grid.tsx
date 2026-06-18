@@ -1,9 +1,17 @@
-function Grid({ grid, pilotos }) {
+import { Drivers, Grid } from "../types/types"
+import { getDriverData, getTime } from "../utils/functions"
+
+type Props = {
+  grid : Grid[], 
+  pilotos : Drivers[]
+}
+
+function Grid({ grid, pilotos }:Props) {
   if (pilotos.length == 0 ) {
     return null
   }
  
- const driversName = getDriverData(grid, pilotos)
+ const driversName = getDriverData({results:grid, pilotos} )
   
   return(
     <section className='grid'>
@@ -14,7 +22,7 @@ function Grid({ grid, pilotos }) {
          <div key={i} className='grid-card'
            style={
               {
-                borderRight: `5px solid #${driversName[i].team_colour}`  
+                borderRight: `5px solid #${driversName[i]?.team_colour}`  
               }
             }
          > 
@@ -22,25 +30,25 @@ function Grid({ grid, pilotos }) {
            <div className='grid-img'
             style={
               {
-                background:`radial-gradient(circle,#${driversName[i].team_colour}80 0%, #${driversName[i].team_colour}20 10%, transparent 100%)`, 
+                background:`radial-gradient(circle,#${driversName[i]?.team_colour}80 0%, #${driversName[i]?.team_colour}20 10%, transparent 100%)`, 
                 
               }
             }
            >
-            <img src={ driversName[i].headshot_url }/>
+            <img src={ driversName[i]?.headshot_url }/>
            </div>
            <div className='grid-info'
              style={
               {
-                background:`radial-gradient(circle,#${driversName[i].team_colour}80 0%, #${driversName[i].team_colour}40 10%, transparent 100%)`
+                background:`radial-gradient(circle,#${driversName[i]?.team_colour}80 0%, #${driversName[i]?.team_colour}40 10%, transparent 100%)`
               }
             } 
            >
              <h4>
-               { driversName[i].first_name }
+               { driversName[i]?.first_name }
              </h4>
              <h3>
-               { driversName[i].last_name }
+               { driversName[i]?.last_name }
              </h3>
              <h4>
                { getTime(g.lap_duration) }

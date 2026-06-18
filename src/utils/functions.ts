@@ -1,3 +1,5 @@
+import { Drivers, Grid, Results } from "../types/types"
+
 export const teamLogos = {
   Alpine: '/Img/teams/alpine.jpeg',
   'Red Bull Racing': '/Img/teams/redbull.jpg',
@@ -14,7 +16,7 @@ export const teamLogos = {
 
 const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
   
-export function getDate (start, end){
+export function getDate (start:number, end:number){
     const dateS = new Date(start)
     const dateE =  new Date(end)
   
@@ -36,18 +38,23 @@ export function getDate (start, end){
     }
     
   } 
-  
-  export const getDriverData = (results, pilotos) => results.map(res => pilotos.find(pil => pil.driver_number === res.driver_number)) 
-  
- export const format = (n) => String(n).padStart(2, '0')
  
-export const getTime = (time) => {
-    const length = time.toString().length
+  type Props = {
+    results : Grid[] | Results[],
+    pilotos : Drivers[]
+  }
+  export const getDriverData = ({results, pilotos}:Props ) => results.map(res => pilotos.find(pil => pil.driver_number === res.driver_number)) 
+  
+ export const format = (n:number) => String(n).padStart(2, '0')
+ 
+export const getTime = (time:number) => {
+    
     const min = Math.floor(time / 60)
     const seg = (time % 60)
     const hour = Math.floor(time / 3600)
     const gap = `${min}:${format(seg)}`
     const duration =  `${format(hour)}:${format(min)}:${format(Math.floor(seg))}`
+    const length = time.toString().length
     return length > 5 ? duration : gap 
   } 
 
