@@ -7,7 +7,7 @@ import { Schedule } from "../../components/schedule";
 import { Results } from "../../components/raceResults";
 import { Teams } from "../../components/teamsChampionship";
 import { Loader } from "../../components/loader";
-
+import "./home.css"
 
 export function Home() {
  const {

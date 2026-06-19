@@ -2,20 +2,23 @@ import {useState, useEffect } from 'react'
 import { useLocation } from "react-router"
 import { useFetch } from "../../hooks/useFetch";
 import { getData } from '../../api/endpoint';
-import { delay } from '../../utils/functions';
+import { delay, getDate } from '../../utils/functions';
+import { Session } from '../../types/types';
+import { Loader } from '../../components/loader';
+import "./schedule.css"
 const BASE_URL = "https://api.openf1.org/v1";
 
 export function PageSchedule(){
   const { circuits } = useFetch()
-  const [data, setData] = useState([])
-  const [loading, setLoading ] = useState(false)
+  const [data, setData] = useState<Session[][]>([])
+  const [loading, setLoading ] = useState<boolean>(false)
   
   const location = useLocation()
   const { circuit } = location.state
   
-  useEffect(() =>{
+  useEffect(():void =>{
     const $el = document.getElementById(circuit)
-    if(!$el) return null 
+    if(!$el) return undefined 
     $el.scrollIntoView({
       behavior : 'smooth', 
       block : 'start'
@@ -34,7 +37,7 @@ useEffect(() => {
 
       results.push(res)
       // Esperar 350ms entre llamadas
-      await delay(300)
+      await delay()
     }
     setLoading(false)
     setData(results)
@@ -49,7 +52,7 @@ useEffect(() => {
     <main className='page-schedule'>
      <div className='schedule-card'>
       {
-        circuitos.map((circ,i) =>
+        circuits.map((circ,i) =>
          <section
           key={i}
           className='schedule-info'

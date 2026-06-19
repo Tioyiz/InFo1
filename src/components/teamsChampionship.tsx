@@ -15,7 +15,7 @@ export function Teams({ equipos, pilotos }:Props) {
     return {
      ...equipo,
      ...info,
-     logo : teamLogos[equipo.team_name as string]
+     logo : teamLogos[equipo.team_name]
     }
     
   })

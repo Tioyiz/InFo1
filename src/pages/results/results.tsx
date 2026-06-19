@@ -1,14 +1,19 @@
 import { useFetch } from "../../hooks/useFetch";
+import { Drivers, Results } from "../../types/types";
+
+import "./results.css"
+
+type NewData = Results & Drivers
 
 export function PageResults(){
   
   const { allResults, drivers, circuits} = useFetch()
   
-  if (!pilotos  ||   circuitos.length == 0) return null
+  if (!drivers  ||   circuits.length == 0) return null
   
-  const newData = allResults.map( result =>
+  const newData:NewData[][] = allResults.map( (result:Results[]) =>
              result.map(( re, i ) =>{
-             const info = drivers.find( p => p.driver_number === re.driver_number)
+             const info = drivers.find( (p:Drivers) => p.driver_number === re.driver_number)
             
              return {
               ...re, 
@@ -17,13 +22,13 @@ export function PageResults(){
              } )
         )  
   
-  const getNameGP = (key) => circuits.find( cir => cir.meeting_key === key ).meeting_name
+  const getNameGP = (key:number) =>  circuits.find( cir => cir.meeting_key === key )?.meeting_name ?? ""
   
   
   return(
     <main className='page-results'>
       {
-        newData.map( (results, idx) =>
+        newData.map( (results, idx:number) =>
           <section key={idx} className='card-results'>
             <h1> 
               { getNameGP(results[0].meeting_key) }
@@ -53,7 +58,7 @@ export function PageResults(){
                  results.slice(3).map((res,idx)=>
                     <tr key={idx}>
                      <td>
-                      {res.position == 'null' ? 'dnf' : res.position}
+                      {res.position === null ? 'dnf' : res.position}
                      </td>
                      <td> 
                        <img src={ res.headshot_url}/>

@@ -60,8 +60,8 @@ export interface Session {
     country_code:       string;
     country_key:        number;
     country_name:       string;
-    date_end:           Date;
-    date_start:         Date;
+    date_end:           number;
+    date_start:         number;
     gmt_offset:         string;
     is_cancelled:       boolean;
     location:           string;
@@ -93,4 +93,6 @@ export interface Grid {
     meeting_key:   number;
     session_key:   number;
 }
+
+
 

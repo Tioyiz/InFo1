@@ -1,6 +1,12 @@
+import { Session } from '../types/types';
 import {getDate} from '../utils/functions'
 
-export function SessionsDate({ nextRace,sessions }) {
+type Props = {
+  nextRace : string, 
+  sessions : Session[]
+}
+
+export function SessionsDate({ nextRace,sessions }:Props ) {
   if (!sessions) return <h3>No hay datos de sesión</h3>;
   
   return (

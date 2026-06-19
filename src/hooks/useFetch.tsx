@@ -11,27 +11,28 @@ import {
   getGrid
 } from "../api/services/fetchdata";
 import { delay } from "../utils/functions";
+import { Circuits, Drivers, DriversChampionship, Grid, Results, Session, TeamsChampionship } from "../types/types";
 
 export function useFetch() {
-  const [circuits, setCircuits] = useState();
-  const [session, setSession] = useState();
-  const [result, setResult] = useState();
-  const [drivers, setDrivers] = useState();
-  const [teamChamp, setTeamChamp] = useState();
-  const [driversChamp, setDriversChamp] = useState();
-  const [allSessions, setAllSessions] = useState()
-  const [grid, setGrid] = useState()
+  const [circuits, setCircuits] = useState<Circuits[]>([]);
+  const [session, setSession] = useState<Session[]>([]);
+  const [result, setResult] = useState<Results[]>([]);
+  const [drivers, setDrivers] = useState<Drivers[]>([]);
+  const [teamChamp, setTeamChamp] = useState<TeamsChampionship[]>([]);
+  const [driversChamp, setDriversChamp] = useState<DriversChampionship[]>([]);
+  const [allSessions, setAllSessions] = useState<Session[]>([])
+  const [grid, setGrid] = useState<Grid[]>([])
   const [allResults, setAllResults] = useState(() =>{
     const data = localStorage.getItem('allResults')
-    return JSON.parse(data) || []
+    return  data ? JSON.parse(data) : []
   } )
   
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   //results
   const countryName = "United States";
   const sessionName = "Race";
-  let sessionKey:Number = 
+  let sessionKey:Number 
  
   //grid
   const gridS = "Qualifying"
@@ -71,11 +72,11 @@ export function useFetch() {
       
       const dataResults = await getResults(sessionKey)
       setResult(dataResults)
-      setAllResults( prev =>{
+      setAllResults( (prev : Results[][]) =>{
           const exist = 
-            prev.some(pv =>pv.some(p =>p.session_key === dataResultados[0].session_key))
+            prev.some(pv =>pv.some(p =>p.session_key === dataResults[0].session_key))
            
-          return exist ? [...prev] : [...prev, dataResultados] 
+          return exist ? [...prev] : [...prev, dataResults] 
         } ) 
       
       const dataDrivers = await getDrivers(sessionKey)
@@ -116,7 +117,6 @@ export function useFetch() {
     grid, 
     countryName, 
     sessionName, 
-    allSessions, 
     allResults,
     nextRace, 
     loading
