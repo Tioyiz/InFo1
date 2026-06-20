@@ -8,7 +8,7 @@ type Props = {
   sesionName : string
 }
 
-export function Results({ results, countryName, pilotos,
+export function LastResults({ results, countryName, pilotos,
   sesionName }:Props) {
   
   if ( results.length === 0) {

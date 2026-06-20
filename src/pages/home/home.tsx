@@ -1,10 +1,10 @@
 
 import { useFetch } from "../../hooks/useFetch";
-import { DriversChampionship } from "../../components/driversChampionship";
+import { DriversChampionships } from "../../components/driversChampionship";
 import { NextRace } from "../../components/nextRace";
 import { SessionsDate } from "../../components/sessionsDate";
 import { Schedule } from "../../components/schedule";
-import { Results } from "../../components/raceResults";
+import { LastResults } from "../../components/raceResults";
 import { Teams } from "../../components/teamsChampionship";
 import { Loader } from "../../components/loader";
 import "./home.css"
@@ -30,7 +30,7 @@ export function Home() {
        loading ?
        <Loader/> :
        <main>
-              <DriversChampionship
+              <DriversChampionships
                 campeonato={driversChamp}
                 pilotos={drivers}
               />
@@ -49,7 +49,7 @@ export function Home() {
                 circuitos={circuits}
               />
               <div className='results-teams'>
-               <Results
+               <LastResults
                 results={result}
                 pilotos={drivers}
                 countryName={countryName}
